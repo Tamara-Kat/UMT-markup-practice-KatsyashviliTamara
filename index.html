@@ -1,75 +1,294 @@
 <!DOCTYPE html>
-<html lang="uk">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flora</title>
-</head>
-<body>
-  <header>
-    <a href="./">
-      <img src="./images/floraletter.svg" alt="Flora logo" width="100">
-    </a>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flora</title>
+  </head>
+  <body>
+    <header>
+      <a href="./" aria-label="Flora home">
+        <img src="./images/logo.svg" alt="Flora logo" width="120" />
+      </a>
 
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#about">About us</a>
-      <a href="#shop">Shop</a>
-      <a href="#blog">Blog</a>
-      <a href="#contact">Contact</a>
-    </nav>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#bestsellers">Bestsellers</a></li>
+          <li><a href="#bouquets">Bouquets</a></li>
+          <li><a href="#feedback">Feedback</a></li>
+          <li><a href="#contacts">Contacts</a></li>
+        </ul>
+      </nav>
 
-    <p><a href="#shop">Shop now</a></p>
-    <hr>
-  </header>
+      <button type="button">Explore Bouquets</button>
+    </header>
 
-  <main>
-    <section id="home">
-      <p>Fresh flowers for every occasion</p>
-      <h1>Brighten Your Day with Our Stunning Bouquets</h1>
-      <p>
-        Discover beautiful floral arrangements created with care and attention
-        to every detail. Choose the bouquet that matches your mood and moment.
-      </p>
-      <p><a href="#shop">Shop now</a></p>
-    </section>
+    <main>
+      <section aria-labelledby="hero-title">
+        <div>
+          <h1 id="hero-title">Brighten Your Day with Our Stunning Bouquets</h1>
+          <p>
+            At Flora, we believe that every occasion deserves a beautiful
+            bouquet. Our expertly crafted arrangements are designed to bring joy
+            and elegance to your celebrations.
+          </p>
+          <button type="button">Explore Our Bestsellers</button>
+        </div>
 
-    <hr>
+        <img
+          src="./images/header.jpg"
+          alt="A bouquet of pink and white flowers"
+          width="540"
+        />
+      </section>
 
-    <section id="about">
-      <p>About us</p>
-      <h2>Our Passion for Floral Artistry</h2>
-      <p>
-        We believe flowers can express feelings better than words. Our team creates
-        elegant bouquets for birthdays, celebrations and everyday moments.
-      </p>
-      <p><a href="#shop">Explore bouquets</a></p>
-    </section>
+      <section id="about" aria-labelledby="about-title">
+        <img
+          src="./images/flower.svg"
+          alt="Decorative flower icon"
+          width="48"
+        />
 
-    <hr>
+        <div>
+          <h2 id="about-title">Our Passion for Floral Artistry</h2>
+          <p>
+            At Flora, we believe that every bouquet tells a story. Our team
+            meticulously crafts each arrangement, blending creativity with the
+            freshest blooms to create stunning pieces for every occasion.
+          </p>
+        </div>
 
-    <section id="shop">
-      <p>Popular collection</p>
-      <h2>Top-Selling Bouquets</h2>
+        <img
+          src="./images/product.jpg"
+          alt="Florist creating a bouquet"
+          width="420"
+        />
+      </section>
 
-      <article>
-        <h3>Spring Elegance</h3>
-        <p>$45</p>
-        <p><a href="#">View details</a></p>
-      </article>
+      <section id="bestsellers" aria-labelledby="bestsellers-title">
+        <h2 id="bestsellers-title">Top-Selling Bouquets</h2>
 
-      <article>
-        <h3>Blush Harmony</h3>
-        <p>$52</p>
-        <p><a href="#">View details</a></p>
-      </article>
+        <ul>
+          <li>
+            <article>
+              <img
+                src="./images/product-1.jpg"
+                alt="Spring Elegance bouquet"
+                width="220"
+              />
+              <h3>Spring Elegance</h3>
+              <p>$35</p>
+            </article>
+          </li>
+          <li>
+            <article>
+              <img
+                src="./images/product.jpg"
+                alt="Berry Chic bouquet"
+                width="220"
+              />
+              <h3>Berry Chic</h3>
+              <p>$40</p>
+            </article>
+          </li>
+          <li>
+            <article>
+              <img
+                src="./images/layout.jpg"
+                alt="Lavender Dream bouquet"
+                width="220"
+              />
+              <h3>Lavender Dream</h3>
+              <p>$55</p>
+            </article>
+          </li>
+        </ul>
 
-      <article>
-        <h3>Lavender Dream</h3>
-        <p>$48</p>
-        <p><a href="#">View details</a></p>
-      </article>
-    </section>
-  </main>
-</body>
+        <button type="button" aria-label="Previous bouquets">Previous</button>
+        <button type="button" aria-label="Next bouquets">Next</button>
+      </section>
+
+      <section id="bouquets" aria-labelledby="bouquets-title">
+        <h2 id="bouquets-title">Bouquets</h2>
+        <p>Explore our stunning selection of fresh flower bouquets.</p>
+
+        <ul>
+          <li>
+            <article>
+              <img
+                src="./images/product.jpg"
+                alt="Peach Meadow bouquet"
+                width="180"
+              />
+              <h3>Peach Meadow</h3>
+              <p>$55</p>
+            </article>
+          </li>
+          <li>
+            <article>
+              <img
+                src="./images/product-1.jpg"
+                alt="Blush Romance bouquet"
+                width="180"
+              />
+              <h3>Blush Romance</h3>
+              <p>$34</p>
+            </article>
+          </li>
+          <li>
+            <article>
+              <img
+                src="./images/layout.jpg"
+                alt="Pastel Garden bouquet"
+                width="180"
+              />
+              <h3>Pastel Garden</h3>
+              <p>$40</p>
+            </article>
+          </li>
+          <li>
+            <article>
+              <img
+                src="./images/header.jpg"
+                alt="Tulip Charm bouquet"
+                width="180"
+              />
+              <h3>Tulip Charm</h3>
+              <p>$61</p>
+            </article>
+          </li>
+          <li>
+            <article>
+              <img
+                src="./images/layout.jpg"
+                alt="Berry Bloom bouquet"
+                width="180"
+              />
+              <h3>Berry Bloom</h3>
+              <p>$32</p>
+            </article>
+          </li>
+          <li>
+            <article>
+              <img
+                src="./images/product.jpg"
+                alt="Sweet Whisper bouquet"
+                width="180"
+              />
+              <h3>Sweet Whisper</h3>
+              <p>$40</p>
+            </article>
+          </li>
+          <li>
+            <article>
+              <img
+                src="./images/contact.svg"
+                alt="Field Joy bouquet"
+                width="180"
+              />
+              <h3>Field Joy</h3>
+              <p>$49</p>
+            </article>
+          </li>
+          <li>
+            <article>
+              <img
+                src="./images/product-1.jpg"
+                alt="Soft Bloom bouquet"
+                width="180"
+              />
+              <h3>Soft Bloom</h3>
+              <p>$37</p>
+            </article>
+          </li>
+        </ul>
+
+        <button type="button">Show More</button>
+      </section>
+
+      <section id="feedback" aria-labelledby="feedback-title">
+        <h2 id="feedback-title">What our clients says</h2>
+
+        <ul>
+          <li>
+            <article>
+              <blockquote>
+                Flora made my anniversary unforgettable with their beautiful
+                arrangement!
+              </blockquote>
+              <p>Emma T.</p>
+            </article>
+          </li>
+          <li>
+            <article>
+              <blockquote>
+                Absolutely stunning bouquet! It looked even better than the
+                photo and arrived right on time.
+              </blockquote>
+              <p>Daniel R.</p>
+            </article>
+          </li>
+          <li>
+            <article>
+              <blockquote>
+                The service was exceptional, and the flowers were fresh!
+              </blockquote>
+              <p>Olivia M.</p>
+            </article>
+          </li>
+        </ul>
+
+        <button type="button" aria-label="Previous testimonials">
+          Previous
+        </button>
+        <button type="button" aria-label="Next testimonials">Next</button>
+      </section>
+
+      <section id="contacts" aria-labelledby="contacts-title">
+        <p>Connect</p>
+        <h2 id="contacts-title">Get in Touch</h2>
+        <p>We’re here to assist you with all your floral needs and inquiries.</p>
+
+        <ul>
+          <li>
+            <h3>Phone</h3>
+            <a href="tel:+15551234567">+1 (555) 123-4567</a>
+          </li>
+          <li>
+            <h3>Store</h3>
+            <address>456 Floral Ave, Sydney NSW 2000 AU</address>
+          </li>
+        </ul>
+
+        <img
+          src="./images/contact.svg"
+          alt="Florist holding a bouquet in a flower shop"
+          width="720"
+        />
+      </section>
+    </main>
+
+    <footer>
+      <a href="./" aria-label="Flora home">
+        <img src="./images/logo.svg" alt="Flora logo" width="140" />
+      </a>
+
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#bestsellers">Bestsellers</a></li>
+        <li><a href="#bouquets">Bouquets</a></li>
+        <li><a href="#feedback">Feedback</a></li>
+        <li><a href="#contacts">Contacts</a></li>
+      </ul>
+
+      <ul aria-label="Social links">
+        <li><a href="#" aria-label="Instagram">Instagram</a></li>
+        <li><a href="#" aria-label="Facebook">Facebook</a></li>
+        <li><a href="#" aria-label="X">X</a></li>
+      </ul>
+
+      <p>&copy; 2025 Flora. All rights reserved.</p>
+    </footer>
+  </body>
 </html>
