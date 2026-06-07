@@ -3,17 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UMT Markup Practice</title>
+  <title>Flora</title>
 </head>
 <body>
   <header>
-    <a href="./">Логотип</a>
+    <a href="./" aria-label="Flora home">
+      <img src="./images/floraletter.svg" alt="Flora logo">
+    </a>
+
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About us</a></li>
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <a href="#shop">Shop now</a>
   </header>
 
   <main>
-    <section>
-      <h1>Назва сторінки</h1>
-      <p>Тут буде твоя HTML-розмітка з макета.</p>
+    <section id="home" aria-labelledby="hero-title">
+      <div>
+        <p>Fresh flowers for every occasion</p>
+        <h1 id="hero-title">Brighten Your Day with Our Stunning Bouquets</h1>
+        <p>
+          Discover beautiful floral arrangements created with care and attention
+          to every detail. Choose the bouquet that matches your mood and moment.
+        </p>
+        <a href="#shop">Shop now</a>
+      </div>
+
+      <div>
+        <img src="./images/flower-1.svg" alt="Decorative flower illustration">
+      </div>
+    </section>
+
+    <section id="about" aria-labelledby="about-title">
+      <div>
+        <img src="./images/Vector.svg" alt="Decorative floral element">
+      </div>
+
+      <div>
+        <p>About us</p>
+        <h2 id="about-title">Our Passion for Floral Artistry</h2>
+        <p>
+          We believe flowers can express feelings better than words. Our team
+          creates elegant bouquets for birthdays, celebrations, подарунків and
+          everyday moments when you want to make someone smile.
+        </p>
+        <a href="#shop">Explore bouquets</a>
+      </div>
+    </section>
+
+    <section id="shop" aria-labelledby="shop-title">
+      <p>Popular collection</p>
+      <h2 id="shop-title">Top-Selling Bouquets</h2>
+
+      <ul>
+        <li>
+          <article>
+            <img src="./images/flower-1.svg" alt="Spring Elegance bouquet">
+            <h3>Spring Elegance</h3>
+            <p>$45</p>
+            <a href="#">View details</a>
+          </article>
+        </li>
+
+        <li>
+          <article>
+            <img src="./images/flower-2.svg" alt="Blush Harmony bouquet">
+            <h3>Blush Harmony</h3>
+            <p>$52</p>
+            <a href="#">View details</a>
+          </article>
+        </li>
+
+        <li>
+          <article>
+            <img src="./images/flower-3.svg" alt="Lavender Dream bouquet">
+            <h3>Lavender Dream</h3>
+            <p>$48</p>
+            <a href="#">View details</a>
+          </article>
+        </li>
+      </ul>
     </section>
   </main>
 </body>
