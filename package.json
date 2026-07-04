@@ -1,0 +1,28 @@
+{
+  "name": "umt-markup-practice-katsyashvilitamara",
+  "version": "1.0.0",
+  "description": "https://tamara-kat.github.io/UMT-markup-practice-KatsyashviliTamara/",
+  "main": "index.js",
+  "scripts": {
+    "server": "json-server --watch db.json --port 3000",
+    "start": "json-server --watch db.json --port 3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tamara-Kat/UMT-markup-practice-KatsyashviliTamara.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Tamara-Kat/UMT-markup-practice-KatsyashviliTamara/issues"
+  },
+  "homepage": "https://github.com/Tamara-Kat/UMT-markup-practice-KatsyashviliTamara#readme",
+  "dependencies": {
+    "axios": "^1.18.1"
+  },
+  "devDependencies": {
+    "json-server": "^1.0.0-beta.15"
+  }
+}

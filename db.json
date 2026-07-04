@@ -1,0 +1,105 @@
+{
+  "bestsellers": [
+    {
+      "id": 1,
+      "title": "Spring Elegance",
+      "price": 35,
+      "category": "bestseller",
+      "image": "./images/perfect-gift-wonderful-flowers-womens-day-tender-smiling-brunet-woman-holding-front-face-bouquet-spring-flowerspace-text.png",
+      "image2x": "./images/perfect-gift-wonderful-flowers-womens-day-tender-smiling-brunet-woman-holding-front-face-bouquet-spring-flowerspace-text.png",
+      "alt": "Spring Elegance bouquet"
+    },
+    {
+      "id": 2,
+      "title": "Berry Chic",
+      "price": 40,
+      "category": "bestseller",
+      "image": "./images/bridal-arrangement-wedding-flowers-closeup-decoration-roses-flowers-ornamental-plants-closeup.png",
+      "image2x": "./images/bridal-arrangement-wedding-flowers-closeup-decoration-roses-flowers-ornamental-plants-closeup.png",
+      "alt": "Berry Chic bouquet"
+    },
+    {
+      "id": 3,
+      "title": "Lavender Dream",
+      "price": 55,
+      "category": "bestseller",
+      "image": "./images/mixed-flower-bouquet-wooden-table.png",
+      "image2x": "./images/mixed-flower-bouquet-wooden-table.png",
+      "alt": "Lavender Dream bouquet"
+    }
+  ],
+  "bouquets": [
+    {
+      "id": 1,
+      "title": "Peach Meadow",
+      "price": 55,
+      "category": "basket",
+      "image": "./images/side-view-rose-bouquet-with-wildflowers-pink-basket.png",
+      "image2x": "./images/side-view-rose-bouquet-with-wildflowers-pink-basket.png",
+      "alt": "Peach Meadow bouquet"
+    },
+    {
+      "id": 2,
+      "title": "Blush Romance",
+      "price": 34,
+      "category": "romantic",
+      "image": "./images/florist-makes-beautiful-bouquet-studio.png",
+      "image2x": "./images/florist-makes-beautiful-bouquet-studio.png",
+      "alt": "Blush Romance bouquet"
+    },
+    {
+      "id": 3,
+      "title": "Pastel Garden",
+      "price": 40,
+      "category": "basket",
+      "image": "./images/big-basket-mixed-flowers-standing-table-with-christmas-cones.png",
+      "image2x": "./images/big-basket-mixed-flowers-standing-table-with-christmas-cones.png",
+      "alt": "Pastel Garden bouquet"
+    },
+    {
+      "id": 4,
+      "title": "Tulip Charm",
+      "price": 61,
+      "category": "classic",
+      "image": "./images/mixed-flower-composition-side-view.png",
+      "image2x": "./images/mixed-flower-composition-side-view.png",
+      "alt": "Tulip Charm bouquet"
+    },
+    {
+      "id": 5,
+      "title": "Berry Bloom",
+      "price": 32,
+      "category": "seasonal",
+      "image": "./images/exotic-rustic-bunch-flowers-mixed-colors.png",
+      "image2x": "./images/exotic-rustic-bunch-flowers-mixed-colors.png",
+      "alt": "Berry Bloom bouquet"
+    },
+    {
+      "id": 6,
+      "title": "Sweet Whisper",
+      "price": 40,
+      "category": "romantic",
+      "image": "./images/basket-filled-with-assorted-colorful-flowers-notecard.png",
+      "image2x": "./images/basket-filled-with-assorted-colorful-flowers-notecard.png",
+      "alt": "Sweet Whisper bouquet"
+    },
+    {
+      "id": 7,
+      "title": "Field Joy",
+      "price": 49,
+      "category": "seasonal",
+      "image": "./images/wild-flowers.png",
+      "image2x": "./images/wild-flowers.png",
+      "alt": "Field Joy bouquet"
+    },
+    {
+      "id": 8,
+      "title": "Soft Bloom",
+      "price": 37,
+      "category": "classic",
+      "image": "./images/close-up-bouquet-decorated-vintage-style-dark-background.png",
+      "image2x": "./images/close-up-bouquet-decorated-vintage-style-dark-background.png",
+      "alt": "Soft Bloom bouquet"
+    }
+  ]
+}

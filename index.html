@@ -43,7 +43,7 @@
           </ul>
         </nav>
 
-        <button class="button header-button" type="button">
+        <button class="button header-button" type="button" data-modal-open>
           Explore Bouquets
         </button>
 
@@ -76,17 +76,18 @@
               joy and elegance to your celebrations.
             </p>
 
-            <button class="button hero-button" type="button">
+            <button class="button hero-button" type="button" data-modal-open>
               Explore Our Bestsellers
             </button>
           </div>
 
           <img
-            class="hero-img"
-            src="./images/hero-bouquet.jpg"
-            alt="A bouquet of pink and white flowers"
-            width="760"
-          />
+  class="hero-img"
+  src="./images/hero-bouquet.jpg"
+  srcset="./images/hero-bouquet.jpg 1x, ./images/hero-bouquet.jpg 2x"
+  alt="A bouquet of pink and white flowers"
+  width="760"
+/>
         </div>
       </section>
 
@@ -111,13 +112,14 @@
             </p>
           </div>
 
-          <img
-            class="about-img"
-            src="./images/elevated-view-female-florist-arranging-white-peony-flowers-shop.png"
-            alt="Florist creating a bouquet"
-            width="560"
-            loading="lazy"
-          />
+       <img
+  class="about-img"
+  src="./images/elevated-view-female-florist-arranging-white-peony-flowers-shop.png"
+  srcset="./images/elevated-view-female-florist-arranging-white-peony-flowers-shop.png 1x, ./images/elevated-view-female-florist-arranging-white-peony-flowers-shop.png 2x"
+  alt="Florist creating a bouquet"
+  width="560"
+  loading="lazy"
+/>
         </div>
       </section>
 
@@ -131,49 +133,55 @@
             Top-Selling Bouquets
           </h2>
 
-          <ul class="bestsellers-list">
-            <li class="bestsellers-item">
-              <article class="product-card">
-                <img
-                  class="product-img"
-                  src="./images/perfect-gift-wonderful-flowers-womens-day-tender-smiling-brunet-woman-holding-front-face-bouquet-spring-flowerspace-text.png"
-                  alt="Spring Elegance bouquet"
-                  width="320"
-                  loading="lazy"
-                />
-                <h3 class="product-title">Spring Elegance</h3>
-                <p class="product-price">$35</p>
-              </article>
-            </li>
+          <p class="products-message js-bestsellers-message"></p>
 
-            <li class="bestsellers-item">
-              <article class="product-card">
-                <img
-                  class="product-img"
-                  src="./images/bridal-arrangement-wedding-flowers-closeup-decoration-roses-flowers-ornamental-plants-closeup.png"
-                  alt="Berry Chic bouquet"
-                  width="320"
-                  loading="lazy"
-                />
-                <h3 class="product-title">Berry Chic</h3>
-                <p class="product-price">$40</p>
-              </article>
-            </li>
+          <ul class="bestsellers-list js-bestsellers-list"></ul>
 
-            <li class="bestsellers-item">
-              <article class="product-card">
-                <img
-                  class="product-img"
-                  src="./images/mixed-flower-bouquet-wooden-table.png"
-                  alt="Lavender Dream bouquet"
-                  width="320"
-                  loading="lazy"
-                />
-                <h3 class="product-title">Lavender Dream</h3>
-                <p class="product-price">$55</p>
-              </article>
-            </li>
-          </ul>
+          <div class="bestsellers-slider-bottom">
+            <ul class="slider-dots" aria-label="Bestsellers pagination">
+              <li><span class="slider-dot is-active"></span></li>
+              <li><span class="slider-dot"></span></li>
+              <li><span class="slider-dot"></span></li>
+              <li><span class="slider-dot"></span></li>
+              <li><span class="slider-dot"></span></li>
+              <li><span class="slider-dot"></span></li>
+            </ul>
+
+            <div
+              class="slider-controls bestsellers-controls"
+              aria-label="Bestsellers controls"
+            >
+              <button
+                class="slider-button"
+                type="button"
+                aria-label="Previous bestseller"
+              >
+                <svg
+                  class="slider-icon"
+                  width="24"
+                  height="24"
+                  aria-hidden="true"
+                >
+                  <use href="./images/icons.svg#icon-left"></use>
+                </svg>
+              </button>
+
+              <button
+                class="slider-button"
+                type="button"
+                aria-label="Next bestseller"
+              >
+                <svg
+                  class="slider-icon"
+                  width="24"
+                  height="24"
+                  aria-hidden="true"
+                >
+                  <use href="./images/icons.svg#icon-right"></use>
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -189,121 +197,55 @@
             Explore our stunning selection of fresh flower bouquets.
           </p>
 
-          <ul class="bouquets-list">
-            <li class="bouquets-item">
-              <article class="product-card">
-                <img
-                  class="product-img"
-                  src="./images/side-view-rose-bouquet-with-wildflowers-pink-basket.png"
-                  alt="Peach Meadow bouquet"
-                  width="280"
-                  loading="lazy"
-                />
-                <h3 class="product-title">Peach Meadow</h3>
-                <p class="product-price">$55</p>
-              </article>
+          <ul class="filter-list" aria-label="Bouquet filters">
+            <li>
+              <button
+                class="filter-button is-active"
+                type="button"
+                data-category="all"
+              >
+                All
+              </button>
             </li>
-
-            <li class="bouquets-item">
-              <article class="product-card">
-                <img
-                  class="product-img"
-                  src="./images/florist-makes-beautiful-bouquet-studio.png"
-                  alt="Blush Romance bouquet"
-                  width="280"
-                  loading="lazy"
-                />
-                <h3 class="product-title">Blush Romance</h3>
-                <p class="product-price">$34</p>
-              </article>
+            <li>
+              <button class="filter-button" type="button" data-category="basket">
+                Basket
+              </button>
             </li>
-
-            <li class="bouquets-item">
-              <article class="product-card">
-                <img
-                  class="product-img"
-                  src="./images/big-basket-mixed-flowers-standing-table-with-christmas-cones.png"
-                  alt="Pastel Garden bouquet"
-                  width="280"
-                  loading="lazy"
-                />
-                <h3 class="product-title">Pastel Garden</h3>
-                <p class="product-price">$40</p>
-              </article>
+            <li>
+              <button
+                class="filter-button"
+                type="button"
+                data-category="romantic"
+              >
+                Romantic
+              </button>
             </li>
-
-            <li class="bouquets-item">
-              <article class="product-card">
-                <img
-                  class="product-img"
-                  src="./images/mixed-flower-composition-side-view.png"
-                  alt="Tulip Charm bouquet"
-                  width="280"
-                  loading="lazy"
-                />
-                <h3 class="product-title">Tulip Charm</h3>
-                <p class="product-price">$61</p>
-              </article>
+            <li>
+              <button
+                class="filter-button"
+                type="button"
+                data-category="classic"
+              >
+                Classic
+              </button>
             </li>
-
-            <li class="bouquets-item">
-              <article class="product-card">
-                <img
-                  class="product-img"
-                  src="./images/exotic-rustic-bunch-flowers-mixed-colors.png"
-                  alt="Berry Bloom bouquet"
-                  width="280"
-                  loading="lazy"
-                />
-                <h3 class="product-title">Berry Bloom</h3>
-                <p class="product-price">$32</p>
-              </article>
-            </li>
-
-            <li class="bouquets-item">
-              <article class="product-card">
-                <img
-                  class="product-img"
-                  src="./images/basket-filled-with-assorted-colorful-flowers-notecard.png"
-                  alt="Sweet Whisper bouquet"
-                  width="280"
-                  loading="lazy"
-                />
-                <h3 class="product-title">Sweet Whisper</h3>
-                <p class="product-price">$40</p>
-              </article>
-            </li>
-
-            <li class="bouquets-item">
-              <article class="product-card">
-                <img
-                  class="product-img"
-                  src="./images/wild-flowers.png"
-                  alt="Field Joy bouquet"
-                  width="280"
-                  loading="lazy"
-                />
-                <h3 class="product-title">Field Joy</h3>
-                <p class="product-price">$49</p>
-              </article>
-            </li>
-
-            <li class="bouquets-item">
-              <article class="product-card">
-                <img
-                  class="product-img"
-                  src="./images/close-up-bouquet-decorated-vintage-style-dark-background.png"
-                  alt="Soft Bloom bouquet"
-                  width="280"
-                  loading="lazy"
-                />
-                <h3 class="product-title">Soft Bloom</h3>
-                <p class="product-price">$37</p>
-              </article>
+            <li>
+              <button
+                class="filter-button"
+                type="button"
+                data-category="seasonal"
+              >
+                Seasonal
+              </button>
             </li>
           </ul>
 
-          <button class="button bouquets-button" type="button">
+          <p class="products-message js-bouquets-message"></p>
+
+          <ul class="bouquets-list js-bouquets-list"></ul>
+
+          <button class="button bouquets-button js-load-more" type="button">
             Show More
           </button>
         </div>
@@ -349,6 +291,41 @@
               </article>
             </li>
           </ul>
+
+          <div
+            class="slider-controls feedback-controls"
+            aria-label="Feedback controls"
+          >
+            <button
+              class="slider-button"
+              type="button"
+              aria-label="Previous feedback"
+            >
+              <svg
+                class="slider-icon"
+                width="24"
+                height="24"
+                aria-hidden="true"
+              >
+                <use href="./images/icons.svg#icon-left"></use>
+              </svg>
+            </button>
+
+            <button
+              class="slider-button"
+              type="button"
+              aria-label="Next feedback"
+            >
+              <svg
+                class="slider-icon"
+                width="24"
+                height="24"
+                aria-hidden="true"
+              >
+                <use href="./images/icons.svg#icon-right"></use>
+              </svg>
+            </button>
+          </div>
         </div>
       </section>
 
@@ -372,7 +349,12 @@
 
           <ul class="contacts-list">
             <li class="contacts-item">
-              <svg class="contacts-icon" width="24" height="24" aria-hidden="true">
+              <svg
+                class="contacts-icon"
+                width="24"
+                height="24"
+                aria-hidden="true"
+              >
                 <use href="./images/icons.svg#icon-phone"></use>
               </svg>
 
@@ -385,7 +367,12 @@
             </li>
 
             <li class="contacts-item">
-              <svg class="contacts-icon" width="24" height="24" aria-hidden="true">
+              <svg
+                class="contacts-icon"
+                width="24"
+                height="24"
+                aria-hidden="true"
+              >
                 <use href="./images/icons.svg#icon-location"></use>
               </svg>
 
@@ -399,12 +386,13 @@
           </ul>
 
           <img
-            class="contacts-img"
-            src="./images/photo-florist-holding-beautiful-flowers-flower-shop.png"
-            alt="Florist holding a bouquet in a flower shop"
-            width="1336"
-            loading="lazy"
-          />
+  class="contacts-img"
+  src="./images/photo-florist-holding-beautiful-flowers-flower-shop.png"
+  srcset="./images/photo-florist-holding-beautiful-flowers-flower-shop.png 1x, ./images/photo-florist-holding-beautiful-flowers-flower-shop.png 2x"
+  alt="Florist holding a bouquet in a flower shop"
+  width="1336"
+  loading="lazy"
+/>
         </div>
       </section>
     </main>
@@ -423,9 +411,34 @@
           <li><a class="footer-link" href="#contacts">Contacts</a></li>
         </ul>
 
+        <form class="subscribe-form">
+          <label class="subscribe-label" for="subscribe-email">
+            Subscribe to our newsletter
+          </label>
+
+          <div class="subscribe-wrapper">
+            <input
+              class="subscribe-input"
+              id="subscribe-email"
+              type="email"
+              name="subscriber_email"
+              placeholder="Enter your email"
+              required
+            />
+
+            <button class="button subscribe-button" type="submit">
+              Subscribe
+            </button>
+          </div>
+        </form>
+
         <ul class="footer-list footer-social-list" aria-label="Social links">
           <li>
-            <a class="footer-link footer-social-link" href="#" aria-label="Instagram">
+            <a
+              class="footer-link footer-social-link"
+              href="#"
+              aria-label="Instagram"
+            >
               <svg class="social-icon" width="24" height="24" aria-hidden="true">
                 <use href="./images/icons.svg#icon-instagram"></use>
               </svg>
@@ -433,7 +446,11 @@
           </li>
 
           <li>
-            <a class="footer-link footer-social-link" href="#" aria-label="Facebook">
+            <a
+              class="footer-link footer-social-link"
+              href="#"
+              aria-label="Facebook"
+            >
               <svg class="social-icon" width="24" height="24" aria-hidden="true">
                 <use href="./images/icons.svg#icon-facebook"></use>
               </svg>
@@ -473,6 +490,90 @@
       </ul>
     </div>
 
+    <div class="backdrop" data-modal>
+      <div
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+      >
+        <button
+          class="modal-close-btn"
+          type="button"
+          aria-label="Close modal"
+          data-modal-close
+        >
+          <svg class="modal-close-icon" width="24" height="24" aria-hidden="true">
+            <use href="./images/icons.svg#icon-close"></use>
+          </svg>
+        </button>
+
+        <p class="modal-title" id="modal-title">Leave your request</p>
+
+        <form class="modal-form">
+          <label class="modal-label" for="user-name">Name</label>
+          <input
+            class="modal-input"
+            id="user-name"
+            type="text"
+            name="user_name"
+            placeholder="Your name"
+            required
+          />
+
+          <label class="modal-label" for="user-phone">Phone</label>
+          <input
+            class="modal-input"
+            id="user-phone"
+            type="tel"
+            name="user_phone"
+            placeholder="+1 (555) 123-4567"
+            required
+          />
+
+          <label class="modal-label" for="user-email">Email</label>
+          <input
+            class="modal-input"
+            id="user-email"
+            type="email"
+            name="user_email"
+            placeholder="Your email"
+            required
+          />
+
+          <label class="modal-label" for="user-comment">Comment</label>
+          <textarea
+            class="modal-textarea"
+            id="user-comment"
+            name="user_comment"
+            placeholder="Your message"
+          ></textarea>
+
+          <label class="policy-label">
+            <input
+              class="policy-checkbox visually-hidden"
+              type="checkbox"
+              name="user_policy"
+              required
+            />
+            <span class="policy-custom-checkbox">
+              <svg class="policy-icon" width="16" height="16" aria-hidden="true">
+                <use href="./images/icons.svg#icon-check"></use>
+              </svg>
+            </span>
+            <span class="policy-text">I agree with the privacy policy</span>
+          </label>
+
+          <button class="button modal-submit" type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./js/mobile-menu.js"></script>
+    <script src="./js/api.js"></script>
+    <script src="./js/modal.js"></script>
+    <script src="./js/products.js"></script>
+    <script src="./js/forms.js"></script>
   </body>
 </html>
