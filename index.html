@@ -16,6 +16,11 @@
 
     <link
       rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <link
+      rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.min.css"
     />
     <link rel="stylesheet" href="./css/styles.css" />
@@ -55,32 +60,35 @@
     </header>
 
     <main>
-  <section class="hero" aria-labelledby="hero-title">
-  <div class="container hero-container">
-    <div class="hero-content">
-      <h1 class="hero-title" id="hero-title">
-        Brighten Your Day with Our Stunning Bouquets
-      </h1>
+      <section
+        class="hero animate__animated animate__fadeIn"
+        aria-labelledby="hero-title"
+      >
+        <div class="container hero-container">
+          <div class="hero-content">
+            <h1 class="hero-title" id="hero-title">
+              Brighten Your Day with Our Stunning Bouquets
+            </h1>
 
-      <p class="hero-text">
-        At Flora, we believe that every occasion deserves a beautiful bouquet.
-        Our expertly crafted arrangements are designed to bring joy and elegance
-        to your celebrations.
-      </p>
+            <p class="hero-text">
+              At Flora, we believe that every occasion deserves a beautiful
+              bouquet. Our expertly crafted arrangements are designed to bring
+              joy and elegance to your celebrations.
+            </p>
 
-      <button class="button hero-button" type="button">
-        Explore Our Bestsellers
-      </button>
-    </div>
+            <button class="button hero-button" type="button">
+              Explore Our Bestsellers
+            </button>
+          </div>
 
-    <img
-      class="hero-img"
-      src="./images/hero-bouquet.jpg"
-      alt="A bouquet of pink and white flowers"
-      width="760"
-    />
-  </div>
-</section>
+          <img
+            class="hero-img"
+            src="./images/hero-bouquet.jpg"
+            alt="A bouquet of pink and white flowers"
+            width="760"
+          />
+        </div>
+      </section>
 
       <section class="section about" id="about" aria-labelledby="about-title">
         <div class="container about-container">
@@ -95,6 +103,7 @@
             <h2 class="section-title about-title" id="about-title">
               Our Passion for Floral Artistry
             </h2>
+
             <p class="section-text about-text">
               At Flora, we believe that every bouquet tells a story. Our team
               meticulously crafts each arrangement, blending creativity with the
@@ -107,6 +116,7 @@
             src="./images/elevated-view-female-florist-arranging-white-peony-flowers-shop.png"
             alt="Florist creating a bouquet"
             width="560"
+            loading="lazy"
           />
         </div>
       </section>
@@ -174,6 +184,7 @@
       >
         <div class="container">
           <h2 class="section-title" id="bouquets-title">Bouquets</h2>
+
           <p class="section-text bouquets-text">
             Explore our stunning selection of fresh flower bouquets.
           </p>
@@ -341,47 +352,62 @@
         </div>
       </section>
 
-     <section
-       class="section contacts"
-       id="contacts"
-  aria-labelledby="contacts-title"
->
-  <div class="container contacts-container">
-    <div class="contacts-content">
-      <p class="contacts-label">Connect</p>
-      <h2 class="section-title contacts-title" id="contacts-title">
-        Get in Touch
-      </h2>
-      <p class="section-text contacts-text">
-        We’re here to assist you with all your floral needs and inquiries.
-      </p>
-    </div>
+      <section
+        class="section contacts"
+        id="contacts"
+        aria-labelledby="contacts-title"
+      >
+        <div class="container contacts-container">
+          <div class="contacts-content">
+            <p class="contacts-label">Connect</p>
 
-    <ul class="contacts-list">
-      <li class="contacts-item">
-        <h3 class="contacts-subtitle">Phone</h3>
-        <a class="contacts-link" href="tel:+15551234567">
-          +1 (555) 123-4567
-        </a>
-      </li>
+            <h2 class="section-title contacts-title" id="contacts-title">
+              Get in Touch
+            </h2>
 
-      <li class="contacts-item">
-        <h3 class="contacts-subtitle">Store</h3>
-        <address class="contacts-address">
-          456 Floral Ave, Sydney NSW 2000 AU
-        </address>
-      </li>
-    </ul>
+            <p class="section-text contacts-text">
+              We’re here to assist you with all your floral needs and inquiries.
+            </p>
+          </div>
 
-    <img
-      class="contacts-img"
-      src="./images/photo-florist-holding-beautiful-flowers-flower-shop.png"
-      alt="Florist holding a bouquet in a flower shop"
-      width="1336"
-      loading="lazy"
-    />
-  </div>
-</section>
+          <ul class="contacts-list">
+            <li class="contacts-item">
+              <svg class="contacts-icon" width="24" height="24" aria-hidden="true">
+                <use href="./images/icons.svg#icon-phone"></use>
+              </svg>
+
+              <div>
+                <h3 class="contacts-subtitle">Phone</h3>
+                <a class="contacts-link" href="tel:+15551234567">
+                  +1 (555) 123-4567
+                </a>
+              </div>
+            </li>
+
+            <li class="contacts-item">
+              <svg class="contacts-icon" width="24" height="24" aria-hidden="true">
+                <use href="./images/icons.svg#icon-location"></use>
+              </svg>
+
+              <div>
+                <h3 class="contacts-subtitle">Store</h3>
+                <address class="contacts-address">
+                  456 Floral Ave, Sydney NSW 2000 AU
+                </address>
+              </div>
+            </li>
+          </ul>
+
+          <img
+            class="contacts-img"
+            src="./images/photo-florist-holding-beautiful-flowers-flower-shop.png"
+            alt="Florist holding a bouquet in a flower shop"
+            width="1336"
+            loading="lazy"
+          />
+        </div>
+      </section>
+    </main>
 
     <footer class="footer">
       <div class="container footer-container">
@@ -397,10 +423,30 @@
           <li><a class="footer-link" href="#contacts">Contacts</a></li>
         </ul>
 
-        <ul class="footer-list" aria-label="Social links">
-          <li><a class="footer-link" href="#">Instagram</a></li>
-          <li><a class="footer-link" href="#">Facebook</a></li>
-          <li><a class="footer-link" href="#">X</a></li>
+        <ul class="footer-list footer-social-list" aria-label="Social links">
+          <li>
+            <a class="footer-link footer-social-link" href="#" aria-label="Instagram">
+              <svg class="social-icon" width="24" height="24" aria-hidden="true">
+                <use href="./images/icons.svg#icon-instagram"></use>
+              </svg>
+            </a>
+          </li>
+
+          <li>
+            <a class="footer-link footer-social-link" href="#" aria-label="Facebook">
+              <svg class="social-icon" width="24" height="24" aria-hidden="true">
+                <use href="./images/icons.svg#icon-facebook"></use>
+              </svg>
+            </a>
+          </li>
+
+          <li>
+            <a class="footer-link footer-social-link" href="#" aria-label="X">
+              <svg class="social-icon" width="24" height="24" aria-hidden="true">
+                <use href="./images/icons.svg#icon-x"></use>
+              </svg>
+            </a>
+          </li>
         </ul>
 
         <p class="footer-copy">&copy; 2025 Flora. All rights reserved.</p>
@@ -427,7 +473,6 @@
       </ul>
     </div>
 
-    <script src="./js/mobile-menu.js">
-    </script>
+    <script src="./js/mobile-menu.js"></script>
   </body>
 </html>
