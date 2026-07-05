@@ -80,26 +80,15 @@
               Explore Our Bestsellers
             </button>
           </div>
-
-          <img
-  class="hero-img"
-  src="./images/hero-bouquet.jpg"
-  srcset="./images/hero-bouquet.jpg 1x, ./images/hero-bouquet.jpg 2x"
-  alt="A bouquet of pink and white flowers"
-  width="760"
-/>
-        </div>
       </section>
 
       <section class="section about" id="about" aria-labelledby="about-title">
         <div class="container about-container">
           <div class="about-content">
-            <img
-              class="about-icon"
-              src="./images/flower.svg"
-              alt="Decorative flower icon"
-              width="48"
-            />
+            <svg class="about-icon" width="48" height="48" aria-hidden="true">
+              <use href="./images/icons.svg#icon-flower"></use>
+            </svg>
+           
 
             <h2 class="section-title about-title" id="about-title">
               Our Passion for Floral Artistry
@@ -471,24 +460,34 @@
     </footer>
 
     <div class="mobile-menu">
-      <button
-        class="mobile-menu-close"
-        type="button"
-        aria-label="Close mobile menu"
-      >
-        <svg class="menu-icon" width="24" height="24" aria-hidden="true">
-          <use href="./images/icons.svg#icon-close"></use>
-        </svg>
-      </button>
+  <div class="mobile-menu-top">
+    <a class="mobile-menu-logo" href="./" aria-label="Flora home">
+      <img src="./images/logo.svg" alt="Flora logo" width="88" />
+    </a>
 
-      <ul class="mobile-menu-list">
-        <li><a class="mobile-menu-link" href="#about">About Us</a></li>
-        <li><a class="mobile-menu-link" href="#bestsellers">Bestsellers</a></li>
-        <li><a class="mobile-menu-link" href="#bouquets">Bouquets</a></li>
-        <li><a class="mobile-menu-link" href="#feedback">Feedback</a></li>
-        <li><a class="mobile-menu-link" href="#contacts">Contacts</a></li>
-      </ul>
-    </div>
+    <button
+      class="mobile-menu-close"
+      type="button"
+      aria-label="Close mobile menu"
+    >
+      <svg class="menu-icon" width="24" height="24" aria-hidden="true">
+        <use href="./images/icons.svg#icon-close"></use>
+      </svg>
+    </button>
+  </div>
+
+  <ul class="mobile-menu-list">
+    <li><a class="mobile-menu-link" href="#about">About Us</a></li>
+    <li><a class="mobile-menu-link" href="#bestsellers">Bestsellers</a></li>
+    <li><a class="mobile-menu-link" href="#bouquets">Bouquets</a></li>
+    <li><a class="mobile-menu-link" href="#feedback">Feedback</a></li>
+    <li><a class="mobile-menu-link" href="#contacts">Contacts</a></li>
+  </ul>
+
+  <button class="button mobile-menu-button" type="button" data-modal-open>
+    Explore Bouquets
+  </button>
+</div>
 
     <div class="backdrop" data-modal>
       <div

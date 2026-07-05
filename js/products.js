@@ -154,3 +154,51 @@ filterButtons.forEach((button) => {
 
 renderBestsellers();
 renderBouquetsByCategory();
+
+function scrollSlider(list, direction) {
+  const firstItem = list.querySelector("li");
+  const styles = window.getComputedStyle(list);
+  const gap = parseFloat(styles.columnGap) || 24;
+  const itemWidth = firstItem
+    ? firstItem.getBoundingClientRect().width
+    : list.clientWidth;
+
+  list.scrollBy({
+    left: direction * (itemWidth + gap),
+    behavior: "smooth",
+  });
+}
+
+function initSliderControls() {
+  const bestsellersControls = document.querySelector(".bestsellers-controls");
+  const feedbackControls = document.querySelector(".feedback-controls");
+
+  if (bestsellersControls && bestsellersList) {
+    const [prevButton, nextButton] =
+      bestsellersControls.querySelectorAll(".slider-button");
+
+    prevButton.addEventListener("click", () => {
+      scrollSlider(bestsellersList, -1);
+    });
+
+    nextButton.addEventListener("click", () => {
+      scrollSlider(bestsellersList, 1);
+    });
+  }
+
+  if (feedbackControls) {
+    const feedbackList = document.querySelector(".feedback-list");
+    const [prevButton, nextButton] =
+      feedbackControls.querySelectorAll(".slider-button");
+
+    prevButton.addEventListener("click", () => {
+      scrollSlider(feedbackList, -1);
+    });
+
+    nextButton.addEventListener("click", () => {
+      scrollSlider(feedbackList, 1);
+    });
+  }
+}
+
+initSliderControls();
