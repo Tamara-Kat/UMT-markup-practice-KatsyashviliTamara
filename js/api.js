@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3001/api/bouquets";
+const BASE_URL = "https://flora-backend-jtb2.onrender.com/api/bouquets";
 
 function normalizeResponseData(responseData) {
   if (Array.isArray(responseData)) {
