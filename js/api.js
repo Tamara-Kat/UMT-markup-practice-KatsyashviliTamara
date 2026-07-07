@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "http://localhost:3001/api/bouquets";
 
 function normalizeResponseData(responseData) {
   if (Array.isArray(responseData)) {
@@ -12,18 +12,27 @@ function normalizeResponseData(responseData) {
   return [];
 }
 
-async function fetchBestsellers() {
-  const response = await axios.get(`${BASE_URL}/bestsellers`);
+async function fetchAllBouquets() {
+  const response = await axios.get(BASE_URL);
   return normalizeResponseData(response.data);
 }
 
-async function fetchBouquets({ category = "all" }) {
-  const params = {};
+async function fetchBestsellers() {
+  const bouquets = await fetchAllBouquets();
 
-  if (category !== "all") {
-    params.category = category;
+  return bouquets.filter((bouquet) => bouquet.favorite);
+}
+
+async function fetchBouquets({ category = "all" } = {}) {
+  const bouquets = await fetchAllBouquets();
+
+  const regularBouquets = bouquets.filter((bouquet) => !bouquet.favorite);
+
+  const hasCategories = regularBouquets.some((bouquet) => bouquet.category);
+
+  if (!hasCategories || category === "all") {
+    return regularBouquets;
   }
 
-  const response = await axios.get(`${BASE_URL}/bouquets`, { params });
-  return normalizeResponseData(response.data);
+  return regularBouquets.filter((bouquet) => bouquet.category === category);
 }

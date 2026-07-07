@@ -15,14 +15,13 @@ const state = {
 function createProductMarkup(products, itemClass) {
   return products
     .map(
-      ({ title, price, image, image2x, alt }) => `
+      ({ title, price, photoURL }) => `
         <li class="${itemClass}">
           <article class="product-card">
             <img
               class="product-img"
-              src="${image}"
-              srcset="${image} 1x, ${image2x} 2x"
-              alt="${alt}"
+              src="${photoURL}"
+              alt="${title}"
               width="320"
               loading="lazy"
             />
@@ -116,7 +115,7 @@ async function renderBouquetsByCategory() {
   } catch (error) {
     showMessage(
       bouquetsMessage,
-      "Sorry, bouquets could not be loaded. Check json-server.",
+      "Sorry, bouquets could not be loaded. Check backend server.",
       "error"
     );
     loadMoreButton.hidden = true;
