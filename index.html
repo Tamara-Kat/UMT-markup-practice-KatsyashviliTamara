@@ -404,6 +404,64 @@
     </div>
   </div>
 
+  <div class="product-backdrop is-hidden js-product-backdrop">
+  <div class="product-modal" role="dialog" aria-modal="true" aria-labelledby="product-modal-title">
+    <button class="product-modal-close js-product-close" type="button" aria-label="Close product modal">
+      ×
+    </button>
+
+    <div class="product-modal-content">
+      <img class="product-modal-img js-product-modal-img" src="" alt="" width="320" />
+
+      <div class="product-modal-info">
+        <h2 class="product-modal-title js-product-modal-title" id="product-modal-title"></h2>
+        <p class="product-modal-price js-product-modal-price"></p>
+        <p class="product-modal-description js-product-modal-description"></p>
+
+        <div class="product-modal-actions">
+          <button class="button product-modal-buy js-product-buy" type="button">
+            Buy now
+          </button>
+
+          <input class="product-modal-quantity js-product-quantity" type="number" min="1" value="1"
+            aria-label="Quantity" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="order-backdrop is-hidden js-order-backdrop">
+  <div class="order-modal" role="dialog" aria-modal="true" aria-labelledby="order-modal-title">
+    <button class="order-modal-close js-order-close" type="button" aria-label="Close order modal">
+      ×
+    </button>
+
+    <h2 class="order-modal-title" id="order-modal-title">Order</h2>
+
+    <form class="order-form js-order-form">
+      <label class="order-label" for="order-name">Name*</label>
+      <input class="order-input" id="order-name" type="text" name="name" placeholder="Ann" required />
+
+      <label class="order-label" for="order-phone">Phone*</label>
+      <input class="order-input" id="order-phone" type="tel" name="phone" placeholder="+1 (555) 123-4567" required />
+
+      <label class="order-label" for="order-address">Address*</label>
+      <input class="order-input" id="order-address" type="text" name="address"
+        placeholder="456 Floral Ave, Sydney NSW 2000 AU" required />
+
+      <label class="order-label" for="order-message">Message</label>
+      <textarea class="order-textarea" id="order-message" name="message" placeholder="Type your message..."></textarea>
+
+      <button class="button order-submit" type="submit">
+        Go to Checkout
+      </button>
+
+      <p class="order-message js-order-message"></p>
+    </form>
+  </div>
+</div>
+
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="./js/mobile-menu.js"></script>
   <script src="./js/api.js"></script>
