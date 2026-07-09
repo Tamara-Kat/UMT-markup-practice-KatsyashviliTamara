@@ -283,6 +283,10 @@ function updateBestsellersDots() {
 
   bestsellersDotsList.innerHTML = "";
 
+  if (pagesCount <= 1) {
+    return;
+  }
+
   for (let index = 0; index < pagesCount; index += 1) {
     const dotItem = document.createElement("li");
     const dot = document.createElement("span");
