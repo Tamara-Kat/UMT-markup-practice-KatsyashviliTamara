@@ -164,12 +164,14 @@ function updateLoadMoreButton() {
   if (shouldShowButton) {
     loadMoreButton.hidden = false;
     loadMoreButton.classList.remove("is-hidden");
+    loadMoreButton.style.display = "flex";
     clearMessage(bouquetsMessage);
     return;
   }
 
   loadMoreButton.hidden = true;
   loadMoreButton.classList.add("is-hidden");
+  loadMoreButton.style.display = "none";
 
   if (state.bouquets.length > 0) {
     showMessage(bouquetsMessage, "You have reached the end of the list.");
@@ -391,9 +393,22 @@ async function renderFeedbacks() {
 loadMoreButton.addEventListener("click", () => {
   clearMessage(bouquetsMessage);
 
+  const shownItems = state.page * state.limit;
+
+  if (shownItems >= state.bouquets.length) {
+    updateLoadMoreButton();
+    return;
+  }
+
   state.page += 1;
 
   const nextItems = getCurrentPageItems();
+
+  if (!nextItems.length) {
+    updateLoadMoreButton();
+    return;
+  }
+
   const markup = createProductMarkup(nextItems, "bouquets-item");
 
   bouquetsList.insertAdjacentHTML("beforeend", markup);

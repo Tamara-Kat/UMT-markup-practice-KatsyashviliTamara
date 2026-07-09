@@ -2925,11 +2925,16 @@ body.modal-open {
     height: 130px;
   }
 
-.bouquets-button:not(.is-hidden) {
-  display: flex;
+[hidden] {
+  display: none !important;
 }
 
 .is-hidden {
+  display: none !important;
+}
+
+.bouquets-button.is-hidden,
+.bouquets-button[hidden] {
   display: none !important;
 }
 .bestsellers-list,
