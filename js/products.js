@@ -1,4 +1,5 @@
 const bestsellersList = document.querySelector(".js-bestsellers-list");
+const bestsellersDotsList = document.querySelector(".bestsellers .slider-dots");
 const bouquetsList = document.querySelector(".js-bouquets-list");
 const feedbackList = document.querySelector(".feedback-list");
 const loadMoreButton = document.querySelector(".js-load-more");
@@ -272,22 +273,29 @@ function getVisibleBestsellers() {
 }
 
 function updateBestsellersDots() {
-  const dots = document.querySelectorAll(".bestsellers .slider-dot");
+  if (!bestsellersDotsList) {
+    return;
+  }
+
   const pagesCount = Math.ceil(
     state.bestsellers.length / state.bestsellersPerPage
   );
 
-  dots.forEach((dot, index) => {
-    const dotItem = dot.closest("li");
+  bestsellersDotsList.innerHTML = "";
 
-    if (index >= pagesCount) {
-      dotItem.classList.add("is-hidden");
-    } else {
-      dotItem.classList.remove("is-hidden");
+  for (let index = 0; index < pagesCount; index += 1) {
+    const dotItem = document.createElement("li");
+    const dot = document.createElement("span");
+
+    dot.classList.add("slider-dot");
+
+    if (index === state.bestsellersPage) {
+      dot.classList.add("is-active");
     }
 
-    dot.classList.toggle("is-active", index === state.bestsellersPage);
-  });
+    dotItem.append(dot);
+    bestsellersDotsList.append(dotItem);
+  }
 }
 
 function renderVisibleBestsellers(direction = "right") {
