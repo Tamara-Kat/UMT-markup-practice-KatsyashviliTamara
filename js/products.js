@@ -29,9 +29,14 @@ const state = {
   bouquets: [],
   allProducts: [],
   selectedProduct: null,
+
   bestsellers: [],
   bestsellersPage: 0,
-  bestsellersPerPage: 3,
+  bestsellersPerPage: 1,
+
+  feedbacks: [],
+  feedbacksPage: 0,
+  feedbacksPerPage: 1,
 };
 
 function createProductMarkup(products, itemClass) {
@@ -49,6 +54,7 @@ function createProductMarkup(products, itemClass) {
               <img
                 class="product-img"
                 src="${photoURL}"
+                onerror="this.onerror=null; this.src='./images/perfect-gift-wonderful-flowers-womens-day-tender-smiling-brunet-woman-holding-front-face-bouquet-spring-flowerspace-text.png';"
                 alt="${title}"
                 width="320"
                 loading="lazy"
@@ -63,7 +69,6 @@ function createProductMarkup(products, itemClass) {
     )
     .join("");
 }
-
 function createFeedbackMarkup(feedbacks) {
   return feedbacks
     .map(
@@ -79,6 +84,59 @@ function createFeedbackMarkup(feedbacks) {
       `
     )
     .join("");
+}
+
+function animateListUpdate(list, direction, updateCallback) {
+  const directionClass = direction === "left" ? "slide-left" : "slide-right";
+
+  list.classList.add("is-changing", directionClass);
+
+  setTimeout(() => {
+    updateCallback();
+
+    requestAnimationFrame(() => {
+      list.classList.remove("is-changing", directionClass);
+    });
+  }, 250);
+}
+
+function updateFeedbacksPerPage() {
+  if (window.innerWidth >= 1024) {
+    state.feedbacksPerPage = 3;
+    return;
+  }
+
+  if (window.innerWidth >= 768) {
+    state.feedbacksPerPage = 2;
+    return;
+  }
+
+  state.feedbacksPerPage = 1;
+}
+
+function getVisibleFeedbacks() {
+  const start = state.feedbacksPage * state.feedbacksPerPage;
+  const end = start + state.feedbacksPerPage;
+
+  return state.feedbacks.slice(start, end);
+}
+
+function renderVisibleFeedbacks(direction = "right") {
+  updateFeedbacksPerPage();
+
+  const pagesCount = Math.ceil(state.feedbacks.length / state.feedbacksPerPage);
+
+  if (state.feedbacksPage >= pagesCount) {
+    state.feedbacksPage = 0;
+  }
+
+  const visibleFeedbacks = getVisibleFeedbacks();
+  const markup = createFeedbackMarkup(visibleFeedbacks);
+
+  animateListUpdate(feedbackList, direction, () => {
+    feedbackList.innerHTML = "";
+    feedbackList.insertAdjacentHTML("beforeend", markup);
+  });
 }
 
 function showMessage(element, text, type = "success") {
@@ -101,12 +159,19 @@ function getCurrentPageItems() {
 
 function updateLoadMoreButton() {
   const shownItems = state.page * state.limit;
-  const shouldHideButton = shownItems >= state.bouquets.length;
+  const shouldShowButton = shownItems < state.bouquets.length;
 
-  loadMoreButton.hidden = shouldHideButton;
-  loadMoreButton.classList.toggle("is-hidden", shouldHideButton);
+  if (shouldShowButton) {
+    loadMoreButton.hidden = false;
+    loadMoreButton.classList.remove("is-hidden");
+    clearMessage(bouquetsMessage);
+    return;
+  }
 
-  if (shouldHideButton && state.bouquets.length > 0) {
+  loadMoreButton.hidden = true;
+  loadMoreButton.classList.add("is-hidden");
+
+  if (state.bouquets.length > 0) {
     showMessage(bouquetsMessage, "You have reached the end of the list.");
   }
 }
@@ -183,6 +248,20 @@ function handleProductClick(event) {
   openProductModal(product);
 }
 
+function updateBestsellersPerPage() {
+  if (window.innerWidth >= 1024) {
+    state.bestsellersPerPage = 3;
+    return;
+  }
+
+  if (window.innerWidth >= 768) {
+    state.bestsellersPerPage = 2;
+    return;
+  }
+
+  state.bestsellersPerPage = 1;
+}
+
 function getVisibleBestsellers() {
   const start = state.bestsellersPage * state.bestsellersPerPage;
   const end = start + state.bestsellersPerPage;
@@ -192,19 +271,42 @@ function getVisibleBestsellers() {
 
 function updateBestsellersDots() {
   const dots = document.querySelectorAll(".bestsellers .slider-dot");
+  const pagesCount = Math.ceil(
+    state.bestsellers.length / state.bestsellersPerPage
+  );
 
   dots.forEach((dot, index) => {
+    const dotItem = dot.closest("li");
+
+    if (index >= pagesCount) {
+      dotItem.classList.add("is-hidden");
+    } else {
+      dotItem.classList.remove("is-hidden");
+    }
+
     dot.classList.toggle("is-active", index === state.bestsellersPage);
   });
 }
 
-function renderVisibleBestsellers() {
+function renderVisibleBestsellers(direction = "right") {
+  updateBestsellersPerPage();
+
+  const pagesCount = Math.ceil(
+    state.bestsellers.length / state.bestsellersPerPage
+  );
+
+  if (state.bestsellersPage >= pagesCount) {
+    state.bestsellersPage = 0;
+  }
+
   const visibleBestsellers = getVisibleBestsellers();
   const markup = createProductMarkup(visibleBestsellers, "bestsellers-item");
 
-  bestsellersList.innerHTML = "";
-  bestsellersList.insertAdjacentHTML("beforeend", markup);
-  updateBestsellersDots();
+  animateListUpdate(bestsellersList, direction, () => {
+    bestsellersList.innerHTML = "";
+    bestsellersList.insertAdjacentHTML("beforeend", markup);
+    updateBestsellersDots();
+  });
 }
 
 async function renderBestsellers() {
@@ -237,8 +339,6 @@ async function renderBouquetsByCategory() {
   try {
     clearMessage(bouquetsMessage);
     bouquetsList.innerHTML = "";
-    loadMoreButton.hidden = true;
-    loadMoreButton.classList.add("is-hidden");
 
     state.page = 1;
     state.bouquets = await fetchBouquets({
@@ -248,6 +348,8 @@ async function renderBouquetsByCategory() {
     saveProducts(state.bouquets);
 
     if (!state.bouquets.length) {
+      loadMoreButton.hidden = true;
+      loadMoreButton.classList.add("is-hidden");
       showMessage(bouquetsMessage, "No bouquets found.");
       return;
     }
@@ -263,6 +365,7 @@ async function renderBouquetsByCategory() {
       "Sorry, bouquets could not be loaded. Check backend server.",
       "error"
     );
+
     loadMoreButton.hidden = true;
     loadMoreButton.classList.add("is-hidden");
   }
@@ -276,8 +379,10 @@ async function renderFeedbacks() {
       return;
     }
 
-    feedbackList.innerHTML = "";
-    feedbackList.insertAdjacentHTML("beforeend", createFeedbackMarkup(feedbacks));
+    state.feedbacks = feedbacks;
+    state.feedbacksPage = 0;
+
+    renderVisibleFeedbacks();
   } catch (error) {
     console.error("Feedbacks could not be loaded:", error);
   }
@@ -413,24 +518,36 @@ function initSliderControls() {
       bestsellersControls.querySelectorAll(".slider-button");
 
     prevButton.addEventListener("click", () => {
+      updateBestsellersPerPage();
+
       const pagesCount = Math.ceil(
         state.bestsellers.length / state.bestsellersPerPage
       );
+
+      if (pagesCount <= 1) {
+        return;
+      }
 
       state.bestsellersPage =
         (state.bestsellersPage - 1 + pagesCount) % pagesCount;
 
-      renderVisibleBestsellers();
+      renderVisibleBestsellers("left");
     });
 
     nextButton.addEventListener("click", () => {
+      updateBestsellersPerPage();
+
       const pagesCount = Math.ceil(
         state.bestsellers.length / state.bestsellersPerPage
       );
 
+      if (pagesCount <= 1) {
+        return;
+      }
+
       state.bestsellersPage = (state.bestsellersPage + 1) % pagesCount;
 
-      renderVisibleBestsellers();
+      renderVisibleBestsellers("right");
     });
   }
 
@@ -439,11 +556,36 @@ function initSliderControls() {
       feedbackControls.querySelectorAll(".slider-button");
 
     prevButton.addEventListener("click", () => {
-      scrollSlider(feedbackList, -1);
+      updateFeedbacksPerPage();
+
+      const pagesCount = Math.ceil(
+        state.feedbacks.length / state.feedbacksPerPage
+      );
+
+      if (pagesCount <= 1) {
+        return;
+      }
+
+      state.feedbacksPage =
+        (state.feedbacksPage - 1 + pagesCount) % pagesCount;
+
+      renderVisibleFeedbacks("left");
     });
 
     nextButton.addEventListener("click", () => {
-      scrollSlider(feedbackList, 1);
+      updateFeedbacksPerPage();
+
+      const pagesCount = Math.ceil(
+        state.feedbacks.length / state.feedbacksPerPage
+      );
+
+      if (pagesCount <= 1) {
+        return;
+      }
+
+      state.feedbacksPage = (state.feedbacksPage + 1) % pagesCount;
+
+      renderVisibleFeedbacks("right");
     });
   }
 }
@@ -452,3 +594,15 @@ renderBestsellers();
 renderBouquetsByCategory();
 renderFeedbacks();
 initSliderControls();
+
+window.addEventListener("resize", () => {
+  if (state.bestsellers.length) {
+    state.bestsellersPage = 0;
+    renderVisibleBestsellers();
+  }
+
+  if (state.feedbacks.length) {
+    state.feedbacksPage = 0;
+    renderVisibleFeedbacks();
+  }
+});

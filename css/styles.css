@@ -2925,7 +2925,30 @@ body.modal-open {
     height: 130px;
   }
 
-  .is-hidden {
+.bouquets-button:not(.is-hidden) {
+  display: flex;
+}
+
+.is-hidden {
   display: none !important;
+}
+.bestsellers-list,
+.feedback-list {
+  transition: opacity 250ms ease, transform 250ms ease;
+}
+
+.bestsellers-list.is-changing,
+.feedback-list.is-changing {
+  opacity: 0;
+}
+
+.bestsellers-list.slide-left,
+.feedback-list.slide-left {
+  transform: translateX(-16px);
+}
+
+.bestsellers-list.slide-right,
+.feedback-list.slide-right {
+  transform: translateX(16px);
 }
 }
