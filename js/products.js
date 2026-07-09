@@ -1,5 +1,6 @@
 const bestsellersList = document.querySelector(".js-bestsellers-list");
 const bouquetsList = document.querySelector(".js-bouquets-list");
+const feedbackList = document.querySelector(".feedback-list");
 const loadMoreButton = document.querySelector(".js-load-more");
 const filterButtons = document.querySelectorAll(".filter-button");
 const bestsellersMessage = document.querySelector(".js-bestsellers-message");
@@ -28,6 +29,9 @@ const state = {
   bouquets: [],
   allProducts: [],
   selectedProduct: null,
+  bestsellers: [],
+  bestsellersPage: 0,
+  bestsellersPerPage: 3,
 };
 
 function createProductMarkup(products, itemClass) {
@@ -60,6 +64,23 @@ function createProductMarkup(products, itemClass) {
     .join("");
 }
 
+function createFeedbackMarkup(feedbacks) {
+  return feedbacks
+    .map(
+      ({ text, author }) => `
+        <li class="feedback-item">
+          <div class="feedback-card">
+            <blockquote class="feedback-text">
+              ${text}
+            </blockquote>
+            <p class="feedback-name">${author}</p>
+          </div>
+        </li>
+      `
+    )
+    .join("");
+}
+
 function showMessage(element, text, type = "success") {
   element.textContent = text;
   element.classList.remove("is-error", "is-success");
@@ -80,18 +101,14 @@ function getCurrentPageItems() {
 
 function updateLoadMoreButton() {
   const shownItems = state.page * state.limit;
+  const shouldHideButton = shownItems >= state.bouquets.length;
 
-  if (shownItems >= state.bouquets.length) {
-    loadMoreButton.hidden = true;
+  loadMoreButton.hidden = shouldHideButton;
+  loadMoreButton.classList.toggle("is-hidden", shouldHideButton);
 
-    if (state.bouquets.length > 0) {
-      showMessage(bouquetsMessage, "You have reached the end of the list.");
-    }
-
-    return;
+  if (shouldHideButton && state.bouquets.length > 0) {
+    showMessage(bouquetsMessage, "You have reached the end of the list.");
   }
-
-  loadMoreButton.hidden = false;
 }
 
 function saveProducts(products) {
@@ -166,11 +183,39 @@ function handleProductClick(event) {
   openProductModal(product);
 }
 
+function getVisibleBestsellers() {
+  const start = state.bestsellersPage * state.bestsellersPerPage;
+  const end = start + state.bestsellersPerPage;
+
+  return state.bestsellers.slice(start, end);
+}
+
+function updateBestsellersDots() {
+  const dots = document.querySelectorAll(".bestsellers .slider-dot");
+
+  dots.forEach((dot, index) => {
+    dot.classList.toggle("is-active", index === state.bestsellersPage);
+  });
+}
+
+function renderVisibleBestsellers() {
+  const visibleBestsellers = getVisibleBestsellers();
+  const markup = createProductMarkup(visibleBestsellers, "bestsellers-item");
+
+  bestsellersList.innerHTML = "";
+  bestsellersList.insertAdjacentHTML("beforeend", markup);
+  updateBestsellersDots();
+}
+
 async function renderBestsellers() {
   try {
     clearMessage(bestsellersMessage);
 
     const bestsellers = await fetchBestsellers();
+
+    state.bestsellers = bestsellers;
+    state.bestsellersPage = 0;
+
     saveProducts(bestsellers);
 
     if (!bestsellers.length) {
@@ -178,9 +223,7 @@ async function renderBestsellers() {
       return;
     }
 
-    const markup = createProductMarkup(bestsellers, "bestsellers-item");
-    bestsellersList.innerHTML = "";
-    bestsellersList.insertAdjacentHTML("beforeend", markup);
+    renderVisibleBestsellers();
   } catch (error) {
     showMessage(
       bestsellersMessage,
@@ -195,6 +238,7 @@ async function renderBouquetsByCategory() {
     clearMessage(bouquetsMessage);
     bouquetsList.innerHTML = "";
     loadMoreButton.hidden = true;
+    loadMoreButton.classList.add("is-hidden");
 
     state.page = 1;
     state.bouquets = await fetchBouquets({
@@ -220,6 +264,22 @@ async function renderBouquetsByCategory() {
       "error"
     );
     loadMoreButton.hidden = true;
+    loadMoreButton.classList.add("is-hidden");
+  }
+}
+
+async function renderFeedbacks() {
+  try {
+    const feedbacks = await fetchFeedbacks();
+
+    if (!feedbacks.length) {
+      return;
+    }
+
+    feedbackList.innerHTML = "";
+    feedbackList.insertAdjacentHTML("beforeend", createFeedbackMarkup(feedbacks));
+  } catch (error) {
+    console.error("Feedbacks could not be loaded:", error);
   }
 }
 
@@ -276,17 +336,37 @@ orderBackdrop.addEventListener("click", (event) => {
   }
 });
 
-orderForm.addEventListener("submit", (event) => {
+orderForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  const quantity = Number(productQuantityInput.value) || 1;
-  const productTitle = state.selectedProduct?.title || "bouquet";
+  if (!state.selectedProduct) {
+    orderMessage.textContent = "Please choose a bouquet first.";
+    return;
+  }
 
-  orderMessage.textContent = `Thank you! Your order for ${quantity} ${productTitle} has been received.`;
+  const formData = new FormData(orderForm);
 
-  setTimeout(() => {
-    closeOrderModal();
-  }, 1800);
+  const orderData = {
+    productId: Number(state.selectedProduct.id),
+    productTitle: state.selectedProduct.title,
+    quantity: Number(productQuantityInput.value) || 1,
+    name: formData.get("name"),
+    phone: formData.get("phone"),
+    address: formData.get("address"),
+    message: formData.get("message") || "",
+  };
+
+  try {
+    await createOrder(orderData);
+
+    orderMessage.textContent = `Thank you! Your order for ${orderData.quantity} ${orderData.productTitle} has been created.`;
+
+    setTimeout(() => {
+      closeOrderModal();
+    }, 1800);
+  } catch (error) {
+    orderMessage.textContent = "Sorry, order could not be created.";
+  }
 });
 
 document.addEventListener("keydown", (event) => {
@@ -303,16 +383,20 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-renderBestsellers();
-renderBouquetsByCategory();
-
 function scrollSlider(list, direction) {
+  if (!list) {
+    return;
+  }
+
   const firstItem = list.querySelector("li");
+
+  if (!firstItem) {
+    return;
+  }
+
   const styles = window.getComputedStyle(list);
-  const gap = parseFloat(styles.columnGap) || 24;
-  const itemWidth = firstItem
-    ? firstItem.getBoundingClientRect().width
-    : list.clientWidth;
+  const gap = parseFloat(styles.columnGap || styles.gap) || 24;
+  const itemWidth = firstItem.getBoundingClientRect().width;
 
   list.scrollBy({
     left: direction * (itemWidth + gap),
@@ -329,16 +413,28 @@ function initSliderControls() {
       bestsellersControls.querySelectorAll(".slider-button");
 
     prevButton.addEventListener("click", () => {
-      scrollSlider(bestsellersList, -1);
+      const pagesCount = Math.ceil(
+        state.bestsellers.length / state.bestsellersPerPage
+      );
+
+      state.bestsellersPage =
+        (state.bestsellersPage - 1 + pagesCount) % pagesCount;
+
+      renderVisibleBestsellers();
     });
 
     nextButton.addEventListener("click", () => {
-      scrollSlider(bestsellersList, 1);
+      const pagesCount = Math.ceil(
+        state.bestsellers.length / state.bestsellersPerPage
+      );
+
+      state.bestsellersPage = (state.bestsellersPage + 1) % pagesCount;
+
+      renderVisibleBestsellers();
     });
   }
 
-  if (feedbackControls) {
-    const feedbackList = document.querySelector(".feedback-list");
+  if (feedbackControls && feedbackList) {
     const [prevButton, nextButton] =
       feedbackControls.querySelectorAll(".slider-button");
 
@@ -352,4 +448,7 @@ function initSliderControls() {
   }
 }
 
+renderBestsellers();
+renderBouquetsByCategory();
+renderFeedbacks();
 initSliderControls();

@@ -1,4 +1,4 @@
-const BASE_URL = "https://flora-backend-jtb2.onrender.com/api/bouquets";
+const API_BASE_URL = "https://flora-backend-jtb2.onrender.com/api";
 
 function normalizeResponseData(responseData) {
   if (Array.isArray(responseData)) {
@@ -13,7 +13,7 @@ function normalizeResponseData(responseData) {
 }
 
 async function fetchAllBouquets() {
-  const response = await axios.get(BASE_URL);
+  const response = await axios.get(`${API_BASE_URL}/bouquets`);
   return normalizeResponseData(response.data);
 }
 
@@ -35,4 +35,14 @@ async function fetchBouquets({ category = "all" } = {}) {
   }
 
   return regularBouquets.filter((bouquet) => bouquet.category === category);
+}
+
+async function fetchFeedbacks() {
+  const response = await axios.get(`${API_BASE_URL}/feedbacks`);
+  return normalizeResponseData(response.data);
+}
+
+async function createOrder(orderData) {
+  const response = await axios.post(`${API_BASE_URL}/orders`, orderData);
+  return response.data;
 }

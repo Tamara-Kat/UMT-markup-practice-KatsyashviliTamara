@@ -2924,4 +2924,8 @@ body.modal-open {
   .order-textarea {
     height: 130px;
   }
+
+  .is-hidden {
+  display: none !important;
+}
 }
